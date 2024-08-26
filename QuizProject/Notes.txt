@@ -1,2 +1,2 @@
 ﻿Ou je suis arrivé?
-	- SeedData in db
+	- QuizContext class: configure tables
