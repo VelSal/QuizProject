@@ -303,31 +303,37 @@ namespace QuizProject.Data
             modelBuilder.Entity<Score>().HasData(
                 new Score
                 {
+                    ScoreId = 1,
                     PlayerId = 1,
                     ScoreCount = 4,
                 },
                 new Score
                 {
+                    ScoreId = 2,
                     PlayerId = 2,
                     ScoreCount = 8,
                 },
                 new Score
                 {
+                    ScoreId = 3,
                     PlayerId = 3,
                     ScoreCount = 12,
                 },
                 new Score
                 {
+                    ScoreId = 4,
                     PlayerId = 1,
                     ScoreCount = 2,
                 },
                 new Score
                 {
+                    ScoreId = 5,
                     PlayerId = 2,
                     ScoreCount = 6,
                 },
                 new Score
                 {
+                    ScoreId = 6,
                     PlayerId = 3,
                     ScoreCount = 10,
                 }

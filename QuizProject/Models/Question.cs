@@ -13,5 +13,6 @@ namespace QuizProject.Models
         public string CorrectAnswer { get; set; }
         [ForeignKey("CategoryId")]
         public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }
