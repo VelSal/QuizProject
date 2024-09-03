@@ -1,0 +1,12 @@
+﻿@model QuizProject.ViewModels.IndexPlayerViewModel
+
+<h2>Welcome to the Velsal Quiz</h2>
+<p>Please enter your name.</p>
+
+<form asp-action="Index" method="post">
+    <div class="form-group">
+        <input asp-for="PlayerName" class="form-control" />
+        <span asp-validation-for="PlayerName" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

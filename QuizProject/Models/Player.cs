@@ -1,4 +1,6 @@
-﻿namespace QuizProject.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace QuizProject.Models
 {
     public class Player
     {
