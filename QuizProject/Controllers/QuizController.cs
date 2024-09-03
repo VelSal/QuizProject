@@ -33,10 +33,9 @@ namespace QuizProject.Controllers
                 PlayerName = viewModel.PlayerName
             };
 
-            ViewBag.ActuelGamePlayerName = viewModel.PlayerName;
-
             if (ModelState.IsValid)
             {
+                ViewBag.ActuelGamePlayerName = viewModel.PlayerName;
                 if (_context.Players.Any(x => x.PlayerName == newPlayer.PlayerName.ToString()))
                 {
                     return RedirectToAction(nameof(Index));
