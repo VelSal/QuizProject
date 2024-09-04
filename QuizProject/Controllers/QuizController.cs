@@ -41,13 +41,13 @@ namespace QuizProject.Controllers
                 ViewBag.ActuelGamePlayerName = viewModel.PlayerName;
                 if (_context.Players.Any(x => x.PlayerName == newPlayer.PlayerName.ToString()))
                 {
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(NewQuiz));
                 }
                 else
                 {
                     _context.Players.Add(newPlayer);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(NewQuiz));
                 }
             }
             return View(viewModel);

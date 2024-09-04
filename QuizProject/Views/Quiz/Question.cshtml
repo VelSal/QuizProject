@@ -1,16 +1,20 @@
-﻿@model Models.Question
+﻿@model QuizProject.Models.Question
 
 <h2>@Model.QuestionText</h2>
 
 <form asp-action="SubmitAnswer" method="post">
 	<input type="hidden" name="questionId" value="@Model.QuestionId" />
 	<div>
-		<label>
+		@* <label>
 			@for (int i=1; i<=4; i++)
 			{
 				<input type="radio" name="selectedAnswer" value="@Model.Answer[i]" /> @Model.Answer[i]
 			}
-		</label>
+		</label> *@
+		<label><input type="radio" name="selectedAnswer" value="@Model.Answer1" /> @Model.Answer1</label>
+		<label><input type="radio" name="selectedAnswer" value="@Model.Answer2" /> @Model.Answer2</label>
+		<label><input type="radio" name="selectedAnswer" value="@Model.Answer3" /> @Model.Answer3</label>
+		<label><input type="radio" name="selectedAnswer" value="@Model.Answer4" /> @Model.Answer4</label>
 	</div>
 	<button type="submit">Submit answer</button>
 </form>

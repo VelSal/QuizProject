@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using QuizProject.Data;
+using QuizProject.Services;
 
 namespace QuizProject
 {
@@ -17,6 +18,7 @@ namespace QuizProject
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            builder.Services.AddScoped<QuizService>();
 
             var app = builder.Build();
 
