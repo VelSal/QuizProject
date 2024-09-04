@@ -1,0 +1,17 @@
+﻿@model Models.Question
+
+<h2>@Model.QuestionText</h2>
+
+<form asp-action="SubmitAnswer" method="post">
+	<input type="hidden" name="questionId" value="@Model.QuestionId" />
+	<div>
+		<label>
+			@for (int i=1; i<=4; i++)
+			{
+				<input type="radio" name="selectedAnswer" value="@Model.Answer[i]" /> @Model.Answer[i]
+			}
+		</label>
+	</div>
+	<button type="submit">Submit answer</button>
+</form>
+
