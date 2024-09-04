@@ -39,7 +39,7 @@ namespace QuizProject
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Quiz}/{action=Index}/{id?}");
+                pattern: "{controller=Quiz}/{action=NewQuiz}/{id?}");
 
             app.Run();
         }

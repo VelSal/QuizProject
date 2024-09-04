@@ -17,20 +17,44 @@ namespace QuizProject.Services
             _currentQuestionIndex = 0;
         }
 
+        // Reset everything
+        public void Reset()
+        {
+            _questions.Clear();
+            _currentQuestionIndex = 0;
+            Console.WriteLine("Quiz reset");
+        }
         public async Task CopyAndRandomizeQuestionsAsync()
         {
+            Reset();
             _questions = await _context.Questions
                 .OrderBy(q => Guid.NewGuid())   //Generate a random Guid and order them by this Guid = random
                 .ToListAsync();
+
+            Console.WriteLine($"{_questions.Count} questions loaded");
         }
 
-        // Get next question if there is one otherwise, return null
-        public Question GetNextQuestion()
+        public void IncrementQuestionsIndex()
         {
-            if (_currentQuestionIndex >= _questions.Count)
+            if (_currentQuestionIndex < _questions.Count - 1)
             {
-                return _questions[_currentQuestionIndex++];
+				_currentQuestionIndex++;
+                Console.WriteLine($"Index incremented to {_currentQuestionIndex}");
             }
+            else
+            {
+                Console.WriteLine("Every questions has been asked");
+            }
+        }
+        // Get next question if there is one otherwise, return null
+        public Question GetCurrentQuestion()
+        {
+            if (_currentQuestionIndex < _questions.Count)
+            {
+                Console.WriteLine($"Question {_currentQuestionIndex + 1} of {_questions.Count}");
+                return _questions[_currentQuestionIndex];
+            }
+            Console.WriteLine("No more questions");
             return null;
         }
 
@@ -43,7 +67,9 @@ namespace QuizProject.Services
         // Is there other questions to ask?
         public bool HasMoreQuestions()
         {
-            return _currentQuestionIndex < _questions.Count;
+            bool moreQuestions = _currentQuestionIndex < _questions.Count;
+            Console.WriteLine($"Has more questions? {moreQuestions}");
+            return moreQuestions;
         }
        
     }
