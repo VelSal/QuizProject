@@ -20,7 +20,7 @@ namespace QuizProject.Services
         // Reset everything
         public void Reset()
         {
-            _questions.Clear();
+            _questions = new List<Question>();
             _currentQuestionIndex = 0;
             Console.WriteLine("Quiz reset");
         }
@@ -32,6 +32,11 @@ namespace QuizProject.Services
                 .ToListAsync();
 
             Console.WriteLine($"{_questions.Count} questions loaded");
+
+            if (_questions.Count == 0)
+            {
+                Console.WriteLine("Error: No questions loaded");
+            }
         }
 
         public void IncrementQuestionsIndex()
@@ -49,17 +54,32 @@ namespace QuizProject.Services
         // Get next question if there is one otherwise, return null
         public Question GetCurrentQuestion()
         {
-            if (_currentQuestionIndex < _questions.Count)
-            {
-                Console.WriteLine($"Question {_currentQuestionIndex + 1} of {_questions.Count}");
-                return _questions[_currentQuestionIndex];
-            }
-            Console.WriteLine("No more questions");
-            return null;
-        }
+			#region Old code
+			//if (_currentQuestionIndex < _questions.Count)
+			//{
+			//    Console.WriteLine($"Question {_currentQuestionIndex + 1} of {_questions.Count}");
+			//    return _questions[_currentQuestionIndex];
+			//}
+			//Console.WriteLine("No more questions");
+			//return null;
+			#endregion
 
-        // Is the answer to the question correct?
-        public bool IsCorrectAnswer(Question question, string selectedAnswer)
+            if (_questions == null || _questions.Count == 0)
+            {
+                Console.WriteLine("Error: questions list empty or not initialized");
+                return null;
+            }
+            if (_currentQuestionIndex < 0 || _currentQuestionIndex >= _questions.Count)
+            {
+                Console.WriteLine($"Error: Invalid index {_currentQuestionIndex} oob");
+                return null;
+            }
+            Console.WriteLine($"Current question: {_currentQuestionIndex + 1} of {_questions.Count}");
+			return _questions[_currentQuestionIndex];
+		}
+
+		// Is the answer to the question correct?
+		public bool IsCorrectAnswer(Question question, string selectedAnswer)
         {
             return question.CorrectAnswer == selectedAnswer;
         }

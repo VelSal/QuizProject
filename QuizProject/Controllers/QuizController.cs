@@ -60,13 +60,15 @@ namespace QuizProject.Controllers
 
             if (!_quizService.HasMoreQuestions())
             {
-                //Console.WriteLine("No questions available, redirecting to perfect game");
+                Console.WriteLine("No questions available, redirecting to perfect game");
                 return RedirectToAction(nameof(PerfectGame));
             }
+            Console.WriteLine("New quiz, question one!");
             return RedirectToAction(nameof(Question));  //Ask questions
         }
 
         // Show question to user
+        [ActionName("Question")]
         public IActionResult Question()
         {
 			var question = _quizService.GetCurrentQuestion();
